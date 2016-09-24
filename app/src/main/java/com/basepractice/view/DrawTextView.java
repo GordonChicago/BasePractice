@@ -23,7 +23,7 @@ public class DrawTextView extends TextView {
     }
 
     public DrawTextView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+        super(context, attrs, defStyleAttr);//asdf
     }
 
     @Override
