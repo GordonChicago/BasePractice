@@ -31,4 +31,9 @@ public class ViewUtils {
         }
         return px;
     }
+
+    public static float spToPx(Context context,int spValue){
+        final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
+        return spValue * fontScale + 0.5f;
+    }
 }

@@ -12,4 +12,9 @@
         android:text="DrawText"
         android:textColor="@color/black"
         android:layout_marginTop="10dp"/>
+    <com.basepractice.view.DrawPercentView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorAccent"/>
 </LinearLayout>
