@@ -5,12 +5,13 @@
     android:background="@color/black">
 
     <com.basepractice.event.dispatch.view.MViewGroupB
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:background="@color/colorPrimary">
 
         <com.basepractice.event.dispatch.view.MView
-            android:layout_width="50dp"
-            android:layout_height="50dp" />
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@color/colorAccent"/>
     </com.basepractice.event.dispatch.view.MViewGroupB>
 </com.basepractice.event.dispatch.view.MViewGroupA>
