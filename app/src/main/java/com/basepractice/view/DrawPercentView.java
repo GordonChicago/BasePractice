@@ -39,6 +39,28 @@ public class DrawPercentView extends View {
 
     private String showText = "showText";
 
+    private int startAngle = 270;
+
+    public int getSweepAngle() {
+        return sweepAngle;
+    }
+
+    public void setSweepAngle(int sweepAngle) {
+        this.sweepAngle = sweepAngle;
+        this.invalidate();
+    }
+
+    public int getStartAngle() {
+        return startAngle;
+    }
+
+    public void setStartAngle(int startAngle) {
+        this.startAngle = startAngle;
+        this.invalidate();
+    }
+
+    private int sweepAngle = 180;
+
     public DrawPercentView(Context context) {
         this(context,null);
     }
@@ -55,10 +77,11 @@ public class DrawPercentView extends View {
     protected void onDraw(Canvas canvas) {
         canvas.setDrawFilter(new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG|Paint.FILTER_BITMAP_FLAG));
         super.onDraw(canvas);
+
         canvas.drawCircle(mCircleXY,mCircleXY,mRadius,mCirclePaint);
         Log.i(TAG,"mCircleXY:"+mCircleXY+",mRadius:"+mRadius);
-        canvas.drawArc(mArcRectF,0,90,true,mArcPaint);
-        canvas.drawText(showText,0,showText.length(),0,ViewUtils.spToPx(getContext(),textSize),mTextPaint);//mCircleXY,mCircleXY + (ViewUtils.spToPx(getContext(),textSize)/4)
+        canvas.drawArc(mArcRectF,startAngle,sweepAngle,false,mArcPaint);
+        canvas.drawText(showText,0,showText.length(),mCircleXY,ViewUtils.spToPx(getContext(),textSize),mTextPaint);//mCircleXY,mCircleXY + (ViewUtils.spToPx(getContext(),textSize)/4)
 //        canvas.save();
     }
 
@@ -82,19 +105,21 @@ public class DrawPercentView extends View {
         mCirclePaint.setStyle(Paint.Style.FILL);
 
         mArcRectF = new RectF(
-                (float)(mWidth * 0.25),
-                (float)(mWidth * 0.25),
-                (float)(mWidth * 0.75),
-                (float)(mWidth * 0.75));
+                (float)(mWidth * 0.2),
+                (float)(mWidth * 0.2),
+                (float)(mWidth * 0.8),
+                (float)(mWidth * 0.8));
 
         mArcPaint = new Paint();
         mArcPaint.setColor(Color.BLACK);
         mArcPaint.setStyle(Paint.Style.STROKE);
+        mArcPaint.setStrokeWidth(ViewUtils.dpToPx(getContext(),20));
         mArcPaint.setAntiAlias(true);
 
         mTextPaint = new Paint();
         mTextPaint.setColor(Color.GREEN);
         mTextPaint.setStyle(Paint.Style.FILL);
+        mTextPaint.setAntiAlias(true);
         mTextPaint.setTextSize(ViewUtils.spToPx(getContext(),textSize));
 
     }
