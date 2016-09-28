@@ -18,6 +18,7 @@
         <activity android:name=".ViewPropertyTest"/>
         <activity android:name=".MeasuedViewActivity"/>
         <activity android:name=".MScrollViewActivity"/>
+        <activity android:name=".EventDispatchActivity"/>
     </application>
 
 </manifest>
