@@ -25,7 +25,6 @@ public class DrawTextView extends TextView {
     private int DEFAULT_WIDTH = 100; //数值为dp
     private int DEFAULT_HEIGHT = 100; //数值为dp
     private Context mContext;
-
     private Canvas mCanvas;
     private Bitmap mBitmap;
     private Bitmap mBitmapWoNiu;

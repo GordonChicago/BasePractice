@@ -11,10 +11,15 @@
         android:layout_height="wrap_content"
         android:text="DrawText"
         android:textColor="@color/black"
-        android:layout_marginTop="10dp"/>
-    <com.basepractice.view.DrawPercentView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:layout_marginTop="10dp"
         android:background="@color/colorAccent"/>
+    <com.basepractice.view.DrawPercentView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorAccent"/>
+    <com.basepractice.view.DrawMusicView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"/>
 </LinearLayout>
