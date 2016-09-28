@@ -69,7 +69,7 @@ public class DrawTextView extends TextView {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        drawGradientColor(canvas);
+        drawBlueYellowColor(canvas);
         Log.i(Tag.VIEW_TEST,"onDraw");
     }
 
@@ -105,18 +105,18 @@ public class DrawTextView extends TextView {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        Log.i(Tag.VIEW_TEST,"onSizeChanged");
-        if(mWidth==0){
-            mWidth = getMeasuredWidth();
-            if(mWidth>0){
-                mPaint = getPaint();
-                mLinearGradient = new LinearGradient(0,0,mWidth,0,
-                        new int[]{Color.BLUE,0xffffff,Color.BLUE},null, Shader.TileMode.CLAMP);
-                mPaint.setShader(mLinearGradient);
-                mMatrix = new Matrix();
-            }
-
-        }
+//        Log.i(Tag.VIEW_TEST,"onSizeChanged");
+//        if(mWidth==0){
+//            mWidth = getMeasuredWidth();
+//            if(mWidth>0){
+//                mPaint = getPaint();
+//                mLinearGradient = new LinearGradient(0,0,mWidth,0,
+//                        new int[]{Color.BLUE,0xffffff,Color.BLUE},null, Shader.TileMode.CLAMP);
+//                mPaint.setShader(mLinearGradient);
+//                mMatrix = new Matrix();
+//            }
+//
+//        }
     }
 
     @Override

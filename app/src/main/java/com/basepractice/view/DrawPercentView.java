@@ -57,7 +57,7 @@ public class DrawPercentView extends View {
         super.onDraw(canvas);
         canvas.drawCircle(mCircleXY,mCircleXY,mRadius,mCirclePaint);
         Log.i(TAG,"mCircleXY:"+mCircleXY+",mRadius:"+mRadius);
-        canvas.drawArc(mArcRectF,0,90,true,mArcPaint);
+        canvas.drawArc(mArcRectF,270,250,false,mArcPaint);
         canvas.drawText(showText,0,showText.length(),0,ViewUtils.spToPx(getContext(),textSize),mTextPaint);//mCircleXY,mCircleXY + (ViewUtils.spToPx(getContext(),textSize)/4)
 //        canvas.save();
     }
@@ -82,14 +82,15 @@ public class DrawPercentView extends View {
         mCirclePaint.setStyle(Paint.Style.FILL);
 
         mArcRectF = new RectF(
-                (float)(mWidth * 0.25),
-                (float)(mWidth * 0.25),
-                (float)(mWidth * 0.75),
-                (float)(mWidth * 0.75));
+                (float)(mWidth * 0.2),
+                (float)(mWidth * 0.2),
+                (float)(mWidth * 0.8),
+                (float)(mWidth * 0.8));
 
         mArcPaint = new Paint();
         mArcPaint.setColor(Color.BLACK);
         mArcPaint.setStyle(Paint.Style.STROKE);
+        mArcPaint.setStrokeWidth(ViewUtils.dpToPx(getContext(),10));
         mArcPaint.setAntiAlias(true);
 
         mTextPaint = new Paint();
