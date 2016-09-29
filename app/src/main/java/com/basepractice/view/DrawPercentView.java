@@ -105,21 +105,19 @@ public class DrawPercentView extends View {
         mCirclePaint.setStyle(Paint.Style.FILL);
 
         mArcRectF = new RectF(
-                (float)(mWidth * 0.2),
-                (float)(mWidth * 0.2),
-                (float)(mWidth * 0.8),
-                (float)(mWidth * 0.8));
+                (float)(mWidth * 0.25),
+                (float)(mWidth * 0.25),
+                (float)(mWidth * 0.75),
+                (float)(mWidth * 0.75));
 
         mArcPaint = new Paint();
         mArcPaint.setColor(Color.BLACK);
         mArcPaint.setStyle(Paint.Style.STROKE);
-        mArcPaint.setStrokeWidth(ViewUtils.dpToPx(getContext(),20));
         mArcPaint.setAntiAlias(true);
 
         mTextPaint = new Paint();
         mTextPaint.setColor(Color.GREEN);
         mTextPaint.setStyle(Paint.Style.FILL);
-        mTextPaint.setAntiAlias(true);
         mTextPaint.setTextSize(ViewUtils.spToPx(getContext(),textSize));
 
     }

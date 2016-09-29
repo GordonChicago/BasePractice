@@ -16,7 +16,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    Class[] activitys = new Class[]{ViewPropertyTest.class,MeasuedViewActivity.class,MScrollViewActivity.class};
+    Class[] activitys = new Class[]{ViewPropertyTest.class,MeasuedViewActivity.class,MScrollViewActivity.class
+    ,EventDispatchActivity.class};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
