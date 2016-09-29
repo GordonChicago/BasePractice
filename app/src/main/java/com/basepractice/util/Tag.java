@@ -8,6 +8,7 @@ import android.util.Log;
 
 public final  class Tag {
     public final static String VIEW_TEST = "ViewTest";
+    public final static String LIST_VIEW = "LIST_VIEW";
     public static void i(String tag,String msg){
         Log.i(tag,msg);
     }

@@ -19,6 +19,7 @@
         <activity android:name=".MeasuedViewActivity"/>
         <activity android:name=".MScrollViewActivity"/>
         <activity android:name=".EventDispatchActivity"/>
+        <activity android:name=".ListViewActivity"/>
     </application>
 
 </manifest>
