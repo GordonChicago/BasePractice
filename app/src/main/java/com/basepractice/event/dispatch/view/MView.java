@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.basepractice.util.MotionEventUtil;
 import com.basepractice.util.Tag;
 
 /**
@@ -28,17 +29,13 @@ public class MView extends View {
 
     @Override
     public boolean dispatchTouchEvent(MotionEvent event) {
-        Tag.i(TAG,"dispatchTouchEvent ");
-        boolean mb = super.onTouchEvent(event);
-        Log.i(TAG,"dispatchTouchEvent " + mb);
-        return mb;
+        Tag.i(TAG,"dispatchTouchEvent " + MotionEventUtil.getActionString(event));
+        return super.dispatchTouchEvent(event);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Tag.i(TAG,"onTouchEvent ");
-        boolean mb = super.onTouchEvent(event);
-        Log.i(TAG,"onTouchEvent "+","+mb);
-        return mb;
+        Tag.i(TAG,"onTouchEvent " + MotionEventUtil.getActionString(event));
+        return super.onTouchEvent(event);
     }
 }
