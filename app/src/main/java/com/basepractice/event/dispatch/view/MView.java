@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.basepractice.util.MotionEventUtil;
 import com.basepractice.util.Tag;
 
 /**
@@ -34,7 +35,10 @@ public class MView extends View {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Tag.i(TAG,"onTouchEvent "+super.onTouchEvent(event));
+        Tag.i(TAG,"onTouchEvent ");
+        if(MotionEventUtil.isACTION_DOWN(event)){
+            return true;
+        }
         return super.onTouchEvent(event);
     }
 }
