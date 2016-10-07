@@ -11,17 +11,21 @@ public class MotionEventUtil {
         String action = "";
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
-                action = "ACTION_DOWN";
+                action = MotionType.ACTION_DOWN;
                 break;
             case MotionEvent.ACTION_MOVE:
-                action = "ACTION_MOVE";
+                action = MotionType.ACTION_MOVE;
                 break;
             case MotionEvent.ACTION_UP:
-                action = "ACTION_UP";
+                action = MotionType.ACTION_UP;
                 break;
             default:
-                action = "UNKNOWN";
+                action = MotionType.ACTION_UNKNOWN;
         }
         return action;
+    }
+    public static boolean isACTION_DOWN(MotionEvent event){
+        boolean isDown = MotionType.ACTION_DOWN.equals(getActionString(event));
+        return isDown;
     }
 }

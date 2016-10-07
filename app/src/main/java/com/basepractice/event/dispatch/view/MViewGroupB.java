@@ -30,24 +30,18 @@ public class MViewGroupB extends LinearLayout {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
         Tag.i(TAG,"dispatchTouchEvent ");
-//        boolean mb = super.onTouchEvent(ev);
-//        Tag.i(TAG,"dispatchTouchEvent " + MotionEventUtil.getActionString(ev) +","+mb);
-        return  super.onTouchEvent(ev);
+        return super.dispatchTouchEvent(ev);
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         Tag.i(TAG,"onInterceptTouchEvent ");
-        boolean mb = super.onTouchEvent(ev);
-        Tag.i(TAG,"onInterceptTouchEvent "+  MotionEventUtil.getActionString(ev) +","+mb);
-        return mb;
+        return super.onInterceptTouchEvent(ev);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Tag.i(TAG,"onTouchEvent ");
-        boolean mb = super.onTouchEvent(event);
-        Tag.i(TAG,"onTouchEvent " + MotionEventUtil.getActionString(event) + ","+mb);
-        return mb;
+        return super.onTouchEvent(event);
     }
 }
