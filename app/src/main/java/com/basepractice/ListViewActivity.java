@@ -22,7 +22,7 @@ import com.basepractice.util.Tag;
  *      设置显示第几个item listview.setSelection(int position)
  *  6 平滑移动还可以这样：
  *      listview.smoothScrollBy(distance,duration)
- *      listview.smoothScrollByOffset(offset)
+ *      listview.smoothScrollByOffset(offset)（搞不懂参数的含义）
  *      listview.smoothScrollToPosition(index)
  *  7 通知内容更新 adaoter.notifyDatasetChanged
  *  8 遍历所有的item
@@ -93,15 +93,19 @@ public class ListViewActivity extends Activity {
     public void smoothScrollBy(View view) {
         View itemView = listView.getAdapter().getView(0,null,null);
         itemView.measure(0,0);
-        listView.smoothScrollBy(5 * (itemView.getMeasuredHeight()+listView.getDividerHeight()),5000);
+        //在当前位置,移动距离
+        listView.smoothScrollBy(5 * (itemView.getMeasuredHeight()+listView.getDividerHeight()),1000);
         Tag.i(Tag.LIST_VIEW,"itemHeight:"+itemView.getMeasuredHeight());
     }
     public void smoothScrollByOffset(View view){
         View itemView = listView.getAdapter().getView(0,null,null);
         itemView.measure(0,0);
-        listView.smoothScrollByOffset(2 * (itemView.getMeasuredHeight()+listView.getDividerHeight()));
+        Tag.i(Tag.LIST_VIEW,"smoothScrollByOffset:"+2 * (itemView.getMeasuredHeight()+listView.getDividerHeight()));
+        //还没明白
+        listView.smoothScrollByOffset(1);
     }
     public void smoothScrollTo(View view) {
+        //参数是position,移动到该position的位置,即显示的position是第一个item（稍微会有点偏差）
         listView.smoothScrollToPosition(10);
     }
 }
