@@ -15,11 +15,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ViewPropertyTest"/>
-        <activity android:name=".MeasuedViewActivity"/>
-        <activity android:name=".MScrollViewActivity"/>
-        <activity android:name=".EventDispatchActivity"/>
-        <activity android:name=".ListViewActivity"/>
+        <activity android:name=".ViewPropertyTest" />
+        <activity android:name=".MeasuedViewActivity" />
+        <activity android:name=".MScrollViewActivity" />
+        <activity android:name=".EventDispatchActivity" />
+        <activity android:name=".ListViewActivity" />
+        <activity android:name=".ViewXYActivity" />
+        <activity android:name=".MScrollViewImpl" />
     </application>
 
 </manifest>
