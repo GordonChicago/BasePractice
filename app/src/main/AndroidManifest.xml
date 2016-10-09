@@ -22,6 +22,7 @@
         <activity android:name=".ListViewActivity" />
         <activity android:name=".ViewXYActivity" />
         <activity android:name=".MScrollViewImpl" />
+        <activity android:name=".ValueAnimator" />
     </application>
 
 </manifest>

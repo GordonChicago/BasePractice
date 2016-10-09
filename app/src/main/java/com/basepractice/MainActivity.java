@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     Class[] activitys = new Class[]{ViewPropertyTest.class,MeasuedViewActivity.class,MScrollViewActivity.class
-    ,EventDispatchActivity.class,ListViewActivity.class,ViewXYActivity.class,MScrollViewImpl.class};
+    ,EventDispatchActivity.class,ListViewActivity.class,ViewXYActivity.class,MScrollViewImpl.class,ValueAnimator.class};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
