@@ -4,17 +4,43 @@
     android:layout_height="match_parent">
 
     <TextView
+        android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="translationX"
         android:onClick="testTranslationX"
-        android:layout_marginLeft="50dp"/>
+        android:layout_marginLeft="50dp"
+        android:background="@color/colorAccent"/>
 
     <TextView
+        android:id="@+id/text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="translationX"
         android:onClick="testTranslationX"
         android:layout_alignParentBottom="true"
         android:layout_marginLeft="300dp"/>
+    <Button
+        android:id="@+id/btn_trans"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="平移"
+        android:onClick="tanslationAnimation"
+        android:layout_alignParentBottom="true"/>
+    <Button
+        android:id="@+id/btn_scacle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="旋转"
+        android:onClick="rotateAnimation"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/btn_trans"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="缩放"
+        android:onClick="scacleAnimation"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/btn_scacle"/>
 </RelativeLayout>
