@@ -25,6 +25,7 @@
         <activity android:name=".ValueAnimator" />
         <activity android:name=".VolleyTestActivity" />
         <activity android:name=".AndroidDrawTest"/>
+        <activity android:name=".ViewFocusTest"/>
     </application>
 
 </manifest>
