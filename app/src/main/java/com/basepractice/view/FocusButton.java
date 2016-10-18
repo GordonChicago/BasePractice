@@ -1,14 +1,10 @@
 package com.basepractice.view;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
-import com.basepractice.R;
 
 /**
  * Created by admin on 2016/10/18.
@@ -17,6 +13,7 @@ import com.basepractice.R;
 public class FocusButton extends Button {
     private Context mContext;
     private View mView;
+    private float mLastX,mLastY;
     public FocusButton(Context context) {
         this(context,null);
     }
@@ -32,13 +29,26 @@ public class FocusButton extends Button {
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                mLastX = event.getX();
+                mLastY = event.getY();
+                break;
+            case MotionEvent.ACTION_MOVE:
+                float nowX = event.getX();
+                float nowY = event.getY();
+                int changeInX = (int)(nowX - mLastX);
+                int changeInY = (int)(nowY - mLastY);
+                mView.layout(mView.getLeft() + changeInX,mView.getTop() + changeInY,mView.getRight() + changeInX,mView.getBottom() + changeInY);
+                mLastX = nowX;
+                mLastY = nowY;
+                break;
+            case MotionEvent.ACTION_UP:
+                break;
+        }
         if(event.getAction()==MotionEvent.ACTION_DOWN){
             mView.setVisibility(VISIBLE);
-            mView.setFocusable(true);
-            mView.setFocusableInTouchMode(true);
-            mView.requestFocus();
-            Toast.makeText(mContext,"requestFocus",Toast.LENGTH_SHORT).show();
-            return false;
+            return true;
         }
         return super.onTouchEvent(event);
     }
