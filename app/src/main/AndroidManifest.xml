@@ -26,6 +26,7 @@
         <activity android:name=".VolleyTestActivity" />
         <activity android:name=".AndroidDrawTest"/>
         <activity android:name=".ViewFocusTest"/>
+        <activity android:name=".HandlerDemo"/>
     </application>
 
 </manifest>
