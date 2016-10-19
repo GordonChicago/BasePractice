@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.basepractice.view.MikeView
+        android:id="@+id/bottom_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/mike_small"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+    <RelativeLayout
+        android:id="@+id/layout_speak"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <!--<com.basepractice.view.FloatMikeView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content" />-->
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/green_mike"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            />
+        
+        <RelativeLayout
+            android:layout_width="150dp"
+            android:layout_height="120dp"
+            android:background="@drawable/mike_main_bg"
+            android:layout_centerInParent="true">
+            <ImageView
+                android:id="@+id/mike_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/mike"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="19dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/mike_progress"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="18dp"
+                android:text="手指上滑,取消发送"
+                />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/gray_view"
+        android:layout_width="50dp"
+        android:layout_height="0dp"
+        android:background="@drawable/mike_gray_bg"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:onClick="updateViewHeight"/>
+</RelativeLayout>

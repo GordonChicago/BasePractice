@@ -32,6 +32,11 @@ public class ViewUtils {
         return px;
     }
 
+    public static float pxTodp(Context context,int pxValue){
+        float dp = (pxValue + 0.5f) / context.getResources().getDisplayMetrics().density;
+        return dp;
+    }
+
     public static float spToPx(Context context,int spValue){
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
         return spValue * fontScale + 0.5f;
