@@ -17,4 +17,14 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <attr name="icon" format="reference"/>
+    <attr name="text" format="string"/>
+    <attr name="text_size" format="dimension"/>
+    <attr name="color" format="color"/>
+    <declare-styleable name="SelfView">
+        <attr name="icon"/>
+        <attr name="text"/>
+        <attr name="text_size"/>
+        <attr name="color"/>
+    </declare-styleable>
 </resources>
