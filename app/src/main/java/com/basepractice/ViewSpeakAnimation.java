@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.basepractice.util.ViewUtils;
 import com.basepractice.view.MikeView;
+import com.basepractice.view.SelfView;
 import com.iflytek.cloud.RecognizerListener;
 import com.iflytek.cloud.RecognizerResult;
 import com.iflytek.cloud.SpeechConstant;
@@ -20,7 +21,7 @@ import com.iflytek.cloud.SpeechRecognizer;
 /**
  * Created by Administrator on 2016/10/19.
  */
-public class ViewSpeakAnimation extends Activity implements View.OnClickListener{
+public class ViewSpeakAnimation extends Activity implements View.OnClickListener {
     private static final String TAG = ViewSpeakAnimation.class.getSimpleName();
     private View speakLayout;
     private View gray_view;
@@ -30,22 +31,22 @@ public class ViewSpeakAnimation extends Activity implements View.OnClickListener
     private float nowVolumn = minVolumn;
     private SpeechRecognizer mIat;
     private String mEngineType = SpeechConstant.TYPE_CLOUD;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_speak_animation);
-
         speakLayout = findViewById(R.id.layout_speak);
         gray_view = findViewById(R.id.gray_view);
-        MikeView mikeView = (MikeView)findViewById(R.id.bottom_view);
+        MikeView mikeView = (MikeView) findViewById(R.id.bottom_view);
 
         mikeView.setOnClickListener(this);
         mikeView.setMikeInterface(mMikeStateInterface);
 
-        mIat = SpeechRecognizer.createRecognizer(this,null);
+        mIat = SpeechRecognizer.createRecognizer(this, null);
     }
 
-    public void setParams(){
+    public void setParams() {
         // 清空参数
         mIat.setParameter(SpeechConstant.PARAMS, null);
 
@@ -59,9 +60,9 @@ public class ViewSpeakAnimation extends Activity implements View.OnClickListener
         // 设置语言区域
         mIat.setParameter(SpeechConstant.ACCENT, "mandarin");
 
-        mIat.setParameter(SpeechConstant.VAD_BOS, ""+60*1000);
+        mIat.setParameter(SpeechConstant.VAD_BOS, "" + 60 * 1000);
 
-        mIat.setParameter(SpeechConstant.VAD_EOS,  ""+60*1000);
+        mIat.setParameter(SpeechConstant.VAD_EOS, "" + 60 * 1000);
     }
 
     private MikeView.MikeStateInterface mMikeStateInterface = new MikeView.MikeStateInterface() {
@@ -113,21 +114,22 @@ public class ViewSpeakAnimation extends Activity implements View.OnClickListener
         }
     }
 
-    public void updateViewHeight(View view){
+    public void updateViewHeight(View view) {
         setParams();
         mIat.startListening(new RecognizerListener() {
             private float maxValue = 30;
+
             @Override
             public void onVolumeChanged(int i, byte[] bytes) {
                 float vi = i;
-                Log.i(TAG,"onVolumeChanged "+i);
+                Log.i(TAG, "onVolumeChanged " + i);
 
                 ViewGroup.LayoutParams params = gray_view.getLayoutParams();
-                float dpValue = (vi/maxValue)*maxHeight;
-                params.height = (int) ViewUtils.dpToPx(ViewSpeakAnimation.this,(int)dpValue);
-                if(i<10){
-                    gray_view.setAlpha(0.05f*i);
-                }else{
+                float dpValue = (vi / maxValue) * maxHeight;
+                params.height = (int) ViewUtils.dpToPx(ViewSpeakAnimation.this, (int) dpValue);
+                if (i < 10) {
+                    gray_view.setAlpha(0.05f * i);
+                } else {
                     gray_view.setAlpha(1f);
                 }
                 gray_view.setLayoutParams(params);
@@ -137,12 +139,12 @@ public class ViewSpeakAnimation extends Activity implements View.OnClickListener
 
             @Override
             public void onBeginOfSpeech() {
-                Toast.makeText(getBaseContext(),"onBeginOfSpeech",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "onBeginOfSpeech", Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onEndOfSpeech() {
-                Toast.makeText(getBaseContext(),"onEndOfSpeech",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), "onEndOfSpeech", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -152,7 +154,7 @@ public class ViewSpeakAnimation extends Activity implements View.OnClickListener
 
             @Override
             public void onError(SpeechError speechError) {
-                Toast.makeText(getBaseContext(),speechError.getErrorDescription(),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getBaseContext(), speechError.getErrorDescription(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -163,21 +165,21 @@ public class ViewSpeakAnimation extends Activity implements View.OnClickListener
 //        mHandler.sendEmptyMessageDelayed(0,10);
     }
 
-    private Handler mHandler = new Handler(){
+    private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             nowVolumn += 1;
-            if(nowVolumn >= maxVolumn){
+            if (nowVolumn >= maxVolumn) {
                 nowVolumn = 0;
             }
 
             ViewGroup.LayoutParams params = gray_view.getLayoutParams();
-            float dpValue = (nowVolumn/maxVolumn)*maxHeight;
-            params.height = (int) ViewUtils.dpToPx(ViewSpeakAnimation.this,(int)dpValue);
+            float dpValue = (nowVolumn / maxVolumn) * maxHeight;
+            params.height = (int) ViewUtils.dpToPx(ViewSpeakAnimation.this, (int) dpValue);
 
             gray_view.setLayoutParams(params);
 
-            mHandler.sendEmptyMessageDelayed(0,10);
+            mHandler.sendEmptyMessageDelayed(0, 10);
         }
     };
 
