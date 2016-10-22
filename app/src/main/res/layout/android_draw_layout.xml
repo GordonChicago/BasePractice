@@ -67,4 +67,9 @@
             app:text="微信"
             app:text_size="10sp" />
     </LinearLayout>
+    <com.basepractice.view.MikeVolumView
+        android:id="@+id/mikeVolumn"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>

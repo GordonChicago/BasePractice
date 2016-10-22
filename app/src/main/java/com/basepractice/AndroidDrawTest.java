@@ -2,6 +2,8 @@ package com.basepractice;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -16,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.basepractice.util.Tag;
+import com.basepractice.view.MikeVolumView;
 import com.basepractice.view.SelfView;
 
 import java.util.ArrayList;
@@ -34,6 +37,23 @@ public class AndroidDrawTest extends FragmentActivity implements View.OnClickLis
     private List<Fragment> mTabFragments = new ArrayList<Fragment>();
 
     private int currentIndex = 0;
+
+    private MikeVolumView mVolumView;
+    private int mVolumn;
+    private int refreshTime = 25;
+
+    private Handler mHandler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            mVolumn++;
+            mVolumView.setVolumn(mVolumn);
+            if(mVolumn==30){
+                mVolumn=0;
+            }
+            mHandler.sendEmptyMessageDelayed(0,refreshTime);
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +77,8 @@ public class AndroidDrawTest extends FragmentActivity implements View.OnClickLis
             sv.setOnClickListener(this);
         }
         mPager = (ViewPager) findViewById(R.id.viewPager_test);
+        mVolumView = (MikeVolumView) findViewById(R.id.mikeVolumn);
+        mVolumView.setVolumn(1);
 
         //initData
         for (String title : mTitles) {
@@ -77,6 +99,12 @@ public class AndroidDrawTest extends FragmentActivity implements View.OnClickLis
 
         //设置监听
         mPager.setOnPageChangeListener(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mHandler.sendEmptyMessageDelayed(0,refreshTime);
     }
 
     @Override
