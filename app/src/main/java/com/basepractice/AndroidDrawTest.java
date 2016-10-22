@@ -152,6 +152,7 @@ public class AndroidDrawTest extends FragmentActivity implements View.OnClickLis
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
         if (positionOffset > 0) {
+            //判断>0的这个边界值非常重要
             float leftAlpha = 1 - positionOffset;
             float rightAlpha = positionOffset;
             selfViews[position].setAlpha(leftAlpha);
