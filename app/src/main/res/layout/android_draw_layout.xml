@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -11,8 +12,64 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/xml_bitmap"/>
+        android:src="@drawable/xml_bitmap" />
 
-    <!--XferMode练习-->
-    
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewPager_test"
+        android:layout_width="match_parent"
+        android:layout_height="100dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+        <!--XferMode练习-->
+        <com.basepractice.view.SelfView
+            android:id="@+id/seletct_one"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp"
+            app:color="@color/colorAccent"
+            app:icon="@drawable/woniu"
+            app:text="微信"
+            app:text_size="10sp" />
+
+        <com.basepractice.view.SelfView
+            android:id="@+id/seletct_two"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp"
+            app:color="@color/colorAccent"
+            app:icon="@drawable/woniu"
+            app:text="微信"
+            app:text_size="10sp" />
+
+        <com.basepractice.view.SelfView
+            android:id="@+id/seletct_three"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp"
+            app:color="@color/colorAccent"
+            app:icon="@drawable/woniu"
+            app:text="微信"
+            app:text_size="10sp" />
+
+        <com.basepractice.view.SelfView
+            android:id="@+id/seletct_four"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="5dp"
+            app:color="@color/colorAccent"
+            app:icon="@drawable/woniu"
+            app:text="微信"
+            app:text_size="10sp" />
+    </LinearLayout>
+    <com.basepractice.view.MikeVolumView
+        android:id="@+id/mikeVolumn"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"/>
 </LinearLayout>
