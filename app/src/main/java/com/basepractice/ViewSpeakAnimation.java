@@ -5,17 +5,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
-
+import com.basepractice.util.Tag;
 import com.basepractice.util.ViewUtils;
-import com.basepractice.view.GrayView;
 import com.basepractice.view.MikeView;
-
 /**
  * Created by Administrator on 2016/10/19.
  */
 public class ViewSpeakAnimation extends Activity implements View.OnClickListener{
     private View speakLayout;
     private View gray_view;
+    private View layout;
+    private MikeView mikeView;
     private float minVolumn = 0;
     private float maxVolumn = 30;
     private int maxHeight = 100;//单位dp
@@ -27,7 +27,8 @@ public class ViewSpeakAnimation extends Activity implements View.OnClickListener
 
         speakLayout = findViewById(R.id.layout_speak);
         gray_view = findViewById(R.id.gray_view);
-        MikeView mikeView = (MikeView)findViewById(R.id.bottom_view);
+        mikeView = (MikeView)findViewById(R.id.bottom_view);
+        layout = findViewById(R.id.layout_mikeview);
 
         mikeView.setOnClickListener(this);
         mikeView.setMikeInterface(mMikeStateInterface);
@@ -36,7 +37,8 @@ public class ViewSpeakAnimation extends Activity implements View.OnClickListener
     private MikeView.MikeStateInterface mMikeStateInterface = new MikeView.MikeStateInterface() {
         @Override
         public void startRecord() {
-            //this.animate().translationY(this.getMeasuredHeight()).setDuration(500).start();
+            layout.animate().translationY(layout.getMeasuredHeight()).setDuration(500).start();
+            Tag.i("MikeView","startRecord");
             //开始录制
             //底部退出动画
             //显示录制界面

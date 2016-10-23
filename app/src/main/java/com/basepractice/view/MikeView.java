@@ -5,7 +5,6 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.basepractice.util.ViewUtils;
 
@@ -64,7 +63,7 @@ public class MikeView extends ImageView {
                     if (mMikeInterface != null) {
                         mMikeInterface.wantCancel();
                     }
-                } else if(distance <= mRadius){
+                } else if(distance <= mRadius && mState == STATE_RECORDING_WANT_CANCEL){
                     mState = STATE_RECORDING;
                     if (mMikeInterface != null) {
                         mMikeInterface.resumeRecord();
