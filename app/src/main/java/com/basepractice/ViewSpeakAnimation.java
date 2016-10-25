@@ -11,6 +11,12 @@ import android.widget.Toast;
 import com.basepractice.util.Tag;
 import com.basepractice.util.ViewUtils;
 import com.basepractice.view.MikeView;
+import com.iflytek.cloud.RecognizerListener;
+import com.iflytek.cloud.RecognizerResult;
+import com.iflytek.cloud.SpeechConstant;
+import com.iflytek.cloud.SpeechError;
+import com.iflytek.cloud.SpeechRecognizer;
+
 /**
  * Created by Administrator on 2016/10/19.
  */
@@ -171,10 +177,11 @@ public class ViewSpeakAnimation extends Activity implements View.OnClickListener
                 nowVolumn = 0;
             }
 
-        ViewGroup.LayoutParams params = gray_view.getLayoutParams();
-        float dpValue = (nowVolumn/maxVolumn)*maxHeight;
-        params.height = (int) ViewUtils.dpToPx(this,(int)dpValue);
+            ViewGroup.LayoutParams params = gray_view.getLayoutParams();
+            float dpValue = (nowVolumn / maxVolumn) * maxHeight;
+            params.height = (int) ViewUtils.dpToPx(ViewSpeakAnimation.this, (int) dpValue);
 
-        gray_view.setLayoutParams(params);
-    }
+            gray_view.setLayoutParams(params);
+        }
+    };
 }
