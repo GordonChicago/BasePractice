@@ -21,6 +21,7 @@
     <attr name="text" format="string"/>
     <attr name="text_size" format="dimension"/>
     <attr name="color" format="color"/>
+    <attr name="textColor" format="color"/>
     <declare-styleable name="SelfView">
         <attr name="icon"/>
         <attr name="text"/>
@@ -43,5 +44,23 @@
         <attr name="progress_text_color"/>
         <attr name="progress_text_size"/>
         <attr name="progress_text_offset"/>
+    </declare-styleable>
+
+    <declare-styleable name="LeanTextView">
+        <!--text attributes-->
+        <attr name="text"/>
+        <attr name="text_size"/>
+        <attr name="textColor"/>
+        <attr name="textRotateDegress" format="float"/>
+        <attr name="textMarginTop" format="dimension"/>
+        <attr name="textMarginRight" format="dimension"/>
+        <attr name="color"/>
+        <attr name="cornerRadius" format="dimension"/>
+        <attr name="location">
+            <enum name="leftTop" value="1"/>
+            <enum name="rightTop" value="2"/>
+            <enum name="leftBottom" value="3"/>
+            <enum name="rightBottom" value="4"/>
+        </attr>
     </declare-styleable>
 </resources>

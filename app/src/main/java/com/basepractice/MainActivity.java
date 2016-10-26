@@ -16,15 +16,16 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    Class[] activitys = new Class[]{ViewPropertyTest.class,MeasuedViewActivity.class,MScrollViewActivity.class
-    ,EventDispatchActivity.class,ListViewActivity.class,ViewXYActivity.class,MScrollViewImpl.class,ValueAnimator.class
-    ,VolleyTestActivity.class,AndroidDrawTest.class,ViewFocusTest.class,HandlerDemo.class,ViewSpeakAnimation.class};
+    Class[] activitys = new Class[]{ViewPropertyTest.class, MeasuedViewActivity.class, MScrollViewActivity.class
+            , EventDispatchActivity.class, ListViewActivity.class, ViewXYActivity.class, MScrollViewImpl.class, ValueAnimator.class
+            , VolleyTestActivity.class, AndroidDrawTest.class, ViewFocusTest.class, HandlerDemo.class, ViewSpeakAnimation.class, MessengerTest.class};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView list = (ListView)findViewById(R.id.listview);
+        ListView list = (ListView) findViewById(R.id.listview);
         list.setAdapter(new BaseAdapter() {
             @Override
             public int getCount() {
@@ -43,8 +44,8 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public View getView(final int position, View convertView, ViewGroup parent) {
-                TextView textView = new TextView(getBaseContext(),null);
-                textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT));
+                TextView textView = new TextView(getBaseContext(), null);
+                textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
                 textView.setGravity(Gravity.CENTER);
                 textView.setTextSize(18);
                 textView.setHeight(100);
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent intent = new Intent(MainActivity.this,activitys[position]);
+                        Intent intent = new Intent(MainActivity.this, activitys[position]);
                         startActivity(intent);
                     }
                 });

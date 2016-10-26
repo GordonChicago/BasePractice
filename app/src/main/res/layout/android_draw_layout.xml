@@ -67,9 +67,31 @@
             app:text="微信"
             app:text_size="10sp" />
     </LinearLayout>
-    <com.basepractice.view.MikeVolumView
-        android:id="@+id/mikeVolumn"
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.basepractice.view.LeanTextView
+            android:layout_width="90dp"
+            android:layout_height="90dp"
+            app:text="你好啊"
+            app:text_size="12sp"
+            app:textColor="@color/white"
+            app:textMarginTop="40dp"
+            app:textMarginRight="50dp"
+            app:textRotateDegress="45"
+            app:color="@color/black"
+            app:cornerRadius="2dp"
+            app:location="leftBottom"
+            />
+
+        <com.basepractice.view.MikeVolumView
+            android:id="@+id/mikeVolumn"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true" />
+    </RelativeLayout>
+
+
 </LinearLayout>
