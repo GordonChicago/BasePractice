@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.basepractice.util.Tag;
+import com.basepractice.view.LeanTextView;
 import com.basepractice.view.MikeVolumView;
 import com.basepractice.view.SelfView;
 
@@ -195,5 +196,10 @@ public class AndroidDrawTest extends FragmentActivity implements View.OnClickLis
 
     @Override
     public void onPageScrollStateChanged(int state) {
+    }
+
+    public void testInvalide(View view) {
+        LeanTextView testView = (LeanTextView) findViewById(R.id.learnTextView);
+        testView.invalidate();
     }
 }

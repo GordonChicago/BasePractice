@@ -18,6 +18,7 @@ import com.basepractice.util.Tag;
  * Created by Administrator on 2016/10/26.
  */
 public class LeanTextView extends View {
+    public static final String TAG = LeanTextView.class.getSimpleName();
     public static final int DEFAULT_COLOR = Color.GREEN;
     public static final float DEFAULT_RADIUS = 10;
     public static final float DEFAULT_TEXT_SIZE = 10;
@@ -67,7 +68,7 @@ public class LeanTextView extends View {
         mLocation = typedArray.getInt(R.styleable.LeanTextView_location, mLocation);
         typedArray.recycle();
 
-        Tag.i("LeanTextView", "denisity:" + mContext.getResources().getDisplayMetrics().density + ",mText:" + mText + ",mTextSize:" + mTextSize + ",mTextColor:" + mTextColor + ",mTextRotateDegress:" + mTextRotateDegress
+        Tag.i(TAG, "denisity:" + mContext.getResources().getDisplayMetrics().density + ",mText:" + mText + ",mTextSize:" + mTextSize + ",mTextColor:" + mTextColor + ",mTextRotateDegress:" + mTextRotateDegress
                 + ",mTextMarginTop:" + mTextMarginTop + ",mTextMarginRight:" + mTextMarginRight + ",mColor:" + mColor + ",mRadius:" + mRadius);
 
         mPaint = new Paint();
@@ -82,11 +83,25 @@ public class LeanTextView extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        Tag.i(TAG,"onMeasure");
+    }
+
+    @Override
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+        super.onSizeChanged(w, h, oldw, oldh);
+        Tag.i(TAG,"onSizeChanged");
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        Tag.i(TAG,"onLayout");
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        Tag.i(TAG,"onDraw");
 
         mPath = new Path();
         RectF arcRect = new RectF();
