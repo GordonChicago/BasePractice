@@ -13,6 +13,7 @@ import android.view.View;
 
 import com.basepractice.R;
 import com.basepractice.util.Tag;
+import com.basepractice.util.ViewUtils;
 
 /**
  * Created by Administrator on 2016/10/26.
@@ -29,7 +30,9 @@ public class LeanTextView extends View {
     public static final int LOCATION_RIGHT_TOP = 2;
     public static final int LOCATION_LEFT_BOTTOM = 3;
     public static final int LOCATION_RIGHT_BOTTOM = 4;
+
     private Context mContext;
+
     //View绘制变量
     private int mColor = DEFAULT_COLOR;//颜色
     private float mRadius = DEFAULT_RADIUS;//弧形半径,像素
@@ -41,9 +44,14 @@ public class LeanTextView extends View {
     private float mTextSize = DEFAULT_TEXT_SIZE;
     private String mText = DEFAULT_TEXT;
     private int mTextColor = DEFAULT_TEXT_COLOR;
-    private float mTextMarginTop;//正常文字距离顶边的距离
-    private float mTextMarginRight;//正常文字距离右边的距离
     private float mTextRotateDegress = DEFAULT_TEXT_ROTATE_DEGRESS;
+
+    private Rect mTextBound;
+    private int mTextCenterX;
+    private int mTextCenterY;
+
+    //View显示text，所需要的最小变成,根据text来反向推算
+    private int mMinWidth;
 
     public LeanTextView(Context context) {
         this(context, null);
@@ -61,15 +69,15 @@ public class LeanTextView extends View {
         mTextSize = typedArray.getDimension(R.styleable.LeanTextView_text_size, mTextSize);
         mTextColor = typedArray.getColor(R.styleable.LeanTextView_textColor, mTextColor);
         mTextRotateDegress = typedArray.getFloat(R.styleable.LeanTextView_textRotateDegress, mTextRotateDegress);
-        mTextMarginTop = typedArray.getDimension(R.styleable.LeanTextView_textMarginTop, mTextMarginTop);
-        mTextMarginRight = typedArray.getDimension(R.styleable.LeanTextView_textMarginRight, mTextMarginRight);
+//        mTextMarginTop = typedArray.getDimension(R.styleable.LeanTextView_textMarginTop, mTextMarginTop);
+//        mTextMarginRight = typedArray.getDimension(R.styleable.LeanTextView_textMarginRight, mTextMarginRight);
         mColor = typedArray.getColor(R.styleable.LeanTextView_color, mColor);
         mRadius = typedArray.getDimension(R.styleable.LeanTextView_cornerRadius, mRadius);
         mLocation = typedArray.getInt(R.styleable.LeanTextView_location, mLocation);
         typedArray.recycle();
 
         Tag.i(TAG, "denisity:" + mContext.getResources().getDisplayMetrics().density + ",mText:" + mText + ",mTextSize:" + mTextSize + ",mTextColor:" + mTextColor + ",mTextRotateDegress:" + mTextRotateDegress
-                + ",mTextMarginTop:" + mTextMarginTop + ",mTextMarginRight:" + mTextMarginRight + ",mColor:" + mColor + ",mRadius:" + mRadius);
+                + ",mColor:" + mColor + ",mRadius:" + mRadius);
 
         mPaint = new Paint();
         mPaint.setStyle(Paint.Style.FILL);
@@ -78,30 +86,62 @@ public class LeanTextView extends View {
         mPaint.setTextSize(mTextSize);
 
         mPath = new Path();
+        //测量文字
+        mTextBound = new Rect();
+        if (mText != null && mText.length() > 0) {
+            mPaint.getTextBounds(mText, 0, mText.length(), mTextBound);
+            //获取Text显示的最小边长
+            float oneLength = (float) mTextBound.width() / (float) Math.sqrt(2.0f);
+            float twoLength = (float) Math.sqrt(2.0f) * mTextBound.height();
+            mMinWidth = (int) (oneLength + twoLength);
+            Tag.i(TAG, "on constructor-mMinWidth:" + mMinWidth);
+        }
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        Tag.i(TAG,"onMeasure");
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+
+        Tag.i(TAG, "onMeasure-widthMode:" + ViewUtils.getMeasureSpecMode(widthMeasureSpec)
+                +",heightMode:"+ViewUtils.getMeasureSpecMode(heightMeasureSpec)
+                +",widthSize:"+widthSize+",heightSize:"+heightSize);
+
+        int sourceMaxSize = Math.max(widthSize, heightSize);
+        sourceMaxSize = Math.max(mMinWidth, sourceMaxSize);
+        Tag.i(TAG, "onMeasure-sourceMaxSize:" + sourceMaxSize);
+        setMeasuredDimension(sourceMaxSize, sourceMaxSize);
+        int width = getMeasuredWidth();
+        int height = getMeasuredHeight();
+        Tag.i(TAG, "onMeasure-width:" + width + ",height:" + height);
+
+        //计算text中心点的位置
+        int oneLeanHeight = mTextBound.width() / 2;
+        int totalLeanHeight = (int) (width / Math.sqrt(2.0f));
+        int perSpaceLeanHeight = (totalLeanHeight - oneLeanHeight - mTextBound.height()) / 2;
+        mTextCenterY = (int) ((oneLeanHeight + perSpaceLeanHeight + mTextBound.height() / 2) / Math.sqrt(2));
+        mTextCenterX = width - mTextCenterY;
+
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        Tag.i(TAG,"onSizeChanged");
+        Tag.i(TAG, "onSizeChanged");
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        Tag.i(TAG,"onLayout");
+        Tag.i(TAG, "onLayout");
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Tag.i(TAG,"onDraw");
+        Tag.i(TAG, "onDraw");
 
         mPath = new Path();
         RectF arcRect = new RectF();
@@ -168,14 +208,11 @@ public class LeanTextView extends View {
         //画圆弧
         canvas.drawArc(arcRect, startAngle, sweepAngle, true, mPaint);
 
+        //画文字
         if (mText != null && mText.length() > 0) {
-            //画文字
-            Rect textBound = new Rect();
-            mPaint.getTextBounds(mText, 0, mText.length(), textBound);
-
             mPaint.setColor(mTextColor);
-            canvas.rotate(mTextRotateDegress, getWidth() - textBound.width() - mTextMarginRight, mTextMarginTop + textBound.height() / 2);
-            canvas.drawText(mText, getWidth() - textBound.width() - mTextMarginRight, textBound.height() + mTextMarginTop, mPaint);
+            canvas.rotate(mTextRotateDegress, mTextCenterX, mTextCenterY);
+            canvas.drawText(mText, mTextCenterX - mTextBound.width() / 2, mTextCenterY + mTextBound.height() / 2, mPaint);
         }
     }
 }

@@ -39,6 +39,7 @@
         <activity android:name=".HandlerDemo" />
         <activity android:name=".ViewSpeakAnimation" />
         <activity android:name=".MessengerTest"/>
+        <activity android:name=".AndroidViewTest"/>
 
         <service
             android:name=".MessengerService"

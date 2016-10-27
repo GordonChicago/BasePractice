@@ -74,8 +74,8 @@
 
         <com.basepractice.view.LeanTextView
             android:id="@+id/learnTextView"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_width="10dp"
+            android:layout_height="10dp"
             app:text="你好啊"
             app:text_size="12sp"
             app:textColor="@color/white"
@@ -84,7 +84,7 @@
             app:textRotateDegress="45"
             app:color="@color/black"
             app:cornerRadius="2dp"
-            app:location="leftBottom"
+            app:location="rightTop"
             />
 
         <com.basepractice.view.MikeVolumView
