@@ -9,6 +9,7 @@ import android.graphics.Path;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.View;
 
 import com.basepractice.R;
@@ -30,6 +31,7 @@ public class LeanTextView extends View {
     public static final int LOCATION_RIGHT_TOP = 2;
     public static final int LOCATION_LEFT_BOTTOM = 3;
     public static final int LOCATION_RIGHT_BOTTOM = 4;
+    public static final int MIN_LEAN_SPACE = 2;
 
     private Context mContext;
 
@@ -52,6 +54,7 @@ public class LeanTextView extends View {
 
     //View显示text，所需要的最小变成,根据text来反向推算
     private int mMinWidth;
+    private int mMinLeanSpace = MIN_LEAN_SPACE;
 
     public LeanTextView(Context context) {
         this(context, null);
@@ -88,11 +91,12 @@ public class LeanTextView extends View {
         mPath = new Path();
         //测量文字
         mTextBound = new Rect();
+        mMinLeanSpace = (int) (mContext.getResources().getDisplayMetrics().density * mMinLeanSpace + 0.5f);
         if (mText != null && mText.length() > 0) {
             mPaint.getTextBounds(mText, 0, mText.length(), mTextBound);
             //获取Text显示的最小边长
             float oneLength = (float) mTextBound.width() / (float) Math.sqrt(2.0f);
-            float twoLength = (float) Math.sqrt(2.0f) * mTextBound.height();
+            float twoLength = (float) Math.sqrt(2.0f) * (mTextBound.height() + mMinLeanSpace);
             mMinWidth = (int) (oneLength + twoLength);
             Tag.i(TAG, "on constructor-mMinWidth:" + mMinWidth);
         }
@@ -106,11 +110,14 @@ public class LeanTextView extends View {
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
 
         Tag.i(TAG, "onMeasure-widthMode:" + ViewUtils.getMeasureSpecMode(widthMeasureSpec)
-                +",heightMode:"+ViewUtils.getMeasureSpecMode(heightMeasureSpec)
-                +",widthSize:"+widthSize+",heightSize:"+heightSize);
+                + ",heightMode:" + ViewUtils.getMeasureSpecMode(heightMeasureSpec)
+                + ",widthSize:" + widthSize + ",heightSize:" + heightSize);
 
         int sourceMaxSize = Math.max(widthSize, heightSize);
-        sourceMaxSize = Math.max(mMinWidth, sourceMaxSize);
+        if (mMinWidth > sourceMaxSize) {
+            sourceMaxSize = (int)((float)Math.max(mMinWidth, sourceMaxSize) * 1.3f);
+        }
+
         Tag.i(TAG, "onMeasure-sourceMaxSize:" + sourceMaxSize);
         setMeasuredDimension(sourceMaxSize, sourceMaxSize);
         int width = getMeasuredWidth();
