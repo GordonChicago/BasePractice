@@ -72,8 +72,6 @@ public class LeanTextView extends View {
         mTextSize = typedArray.getDimension(R.styleable.LeanTextView_text_size, mTextSize);
         mTextColor = typedArray.getColor(R.styleable.LeanTextView_textColor, mTextColor);
         mTextRotateDegress = typedArray.getFloat(R.styleable.LeanTextView_textRotateDegress, mTextRotateDegress);
-//        mTextMarginTop = typedArray.getDimension(R.styleable.LeanTextView_textMarginTop, mTextMarginTop);
-//        mTextMarginRight = typedArray.getDimension(R.styleable.LeanTextView_textMarginRight, mTextMarginRight);
         mColor = typedArray.getColor(R.styleable.LeanTextView_color, mColor);
         mRadius = typedArray.getDimension(R.styleable.LeanTextView_cornerRadius, mRadius);
         mLocation = typedArray.getInt(R.styleable.LeanTextView_location, mLocation);
@@ -92,6 +90,9 @@ public class LeanTextView extends View {
         //测量文字
         mTextBound = new Rect();
         mMinLeanSpace = (int) (mContext.getResources().getDisplayMetrics().density * mMinLeanSpace + 0.5f);
+    }
+
+    private void measureMinTextShowRect() {
         if (mText != null && mText.length() > 0) {
             mPaint.getTextBounds(mText, 0, mText.length(), mTextBound);
             //获取Text显示的最小边长
@@ -104,10 +105,10 @@ public class LeanTextView extends View {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        measureMinTextShowRect();
+
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
-        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
-        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
 
         Tag.i(TAG, "onMeasure-widthMode:" + ViewUtils.getMeasureSpecMode(widthMeasureSpec)
                 + ",heightMode:" + ViewUtils.getMeasureSpecMode(heightMeasureSpec)
@@ -232,5 +233,10 @@ public class LeanTextView extends View {
             canvas.rotate(mTextRotateDegress, mTextCenterX, mTextCenterY);
             canvas.drawText(mText, mTextCenterX - mTextBound.width() / 2, mTextCenterY + mTextBound.height() / 2, mPaint);
         }
+    }
+
+    public void setText(String text) {
+        mText = text;
+        requestLayout();
     }
 }

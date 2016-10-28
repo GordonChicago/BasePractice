@@ -52,8 +52,6 @@
         <attr name="text_size"/>
         <attr name="textColor"/>
         <attr name="textRotateDegress" format="float"/>
-        <attr name="textMarginTop" format="dimension"/>
-        <attr name="textMarginRight" format="dimension"/>
         <attr name="color"/>
         <attr name="cornerRadius" format="dimension"/>
         <attr name="location">

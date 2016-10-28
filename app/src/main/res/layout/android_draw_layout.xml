@@ -80,8 +80,6 @@
             app:text="你好"
             app:text_size="12sp"
             app:textColor="@color/white"
-            app:textMarginTop="40dp"
-            app:textMarginRight="50dp"
             app:textRotateDegress="45"
             app:color="@color/black"
             app:cornerRadius="2dp"
@@ -94,11 +92,11 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true" />
 
-        <!--<Button-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="testInvalide"-->
-            <!--android:onClick="testInvalide"/>-->
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="testInvalide"
+            android:onClick="testInvalide"/>
     </FrameLayout>
 
 

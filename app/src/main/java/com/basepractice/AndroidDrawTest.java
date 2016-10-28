@@ -200,6 +200,6 @@ public class AndroidDrawTest extends FragmentActivity implements View.OnClickLis
 
     public void testInvalide(View view) {
         LeanTextView testView = (LeanTextView) findViewById(R.id.learnTextView);
-        testView.invalidate();
+        testView.setText("testInvalide");
     }
 }
