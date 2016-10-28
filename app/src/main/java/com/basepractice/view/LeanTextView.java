@@ -115,7 +115,7 @@ public class LeanTextView extends View {
 
         int sourceMaxSize = Math.max(widthSize, heightSize);
         if (mMinWidth > sourceMaxSize) {
-            sourceMaxSize = (int)((float)Math.max(mMinWidth, sourceMaxSize) * 1.3f);
+            sourceMaxSize = (int) ((float) Math.max(mMinWidth, sourceMaxSize) * 1.3f);
         }
 
         Tag.i(TAG, "onMeasure-sourceMaxSize:" + sourceMaxSize);
@@ -128,9 +128,20 @@ public class LeanTextView extends View {
         int oneLeanHeight = mTextBound.width() / 2;
         int totalLeanHeight = (int) (width / Math.sqrt(2.0f));
         int perSpaceLeanHeight = (totalLeanHeight - oneLeanHeight - mTextBound.height()) / 2;
-        mTextCenterY = (int) ((oneLeanHeight + perSpaceLeanHeight + mTextBound.height() / 2) / Math.sqrt(2));
-        mTextCenterX = width - mTextCenterY;
 
+        if (mLocation == LOCATION_LEFT_TOP) {
+            mTextCenterY = (int) ((oneLeanHeight + perSpaceLeanHeight + mTextBound.height() / 2) / Math.sqrt(2));
+            mTextCenterX = mTextCenterY;
+        } else if (mLocation == LOCATION_RIGHT_TOP) {
+            mTextCenterY = (int) ((oneLeanHeight + perSpaceLeanHeight + mTextBound.height() / 2) / Math.sqrt(2));
+            mTextCenterX = width - mTextCenterY;
+        } else if (mLocation == LOCATION_LEFT_BOTTOM) {
+            mTextCenterY = height - (int) ((oneLeanHeight + perSpaceLeanHeight + mTextBound.height() / 2) / Math.sqrt(2));
+            mTextCenterX = height - mTextCenterY;
+        } else if (mLocation == LOCATION_RIGHT_BOTTOM) {
+            mTextCenterY = height - (int) ((oneLeanHeight + perSpaceLeanHeight + mTextBound.height() / 2) / Math.sqrt(2));
+            mTextCenterX = mTextCenterY;
+        }
     }
 
     @Override
