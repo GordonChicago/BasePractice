@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.basepractice.util.Tag;
+import com.basepractice.view.HorizontalProgressbar;
 import com.basepractice.view.LeanTextView;
 import com.basepractice.view.MikeVolumView;
 import com.basepractice.view.SelfView;
@@ -43,18 +44,34 @@ public class AndroidDrawTest extends FragmentActivity implements View.OnClickLis
     private int mVolumn;
     private int refreshTime = 25;
 
-    private Handler mHandler = new Handler(){
+    private HorizontalProgressbar horizontalProgressbar;
+    private int progress;
+
+    private Handler mHandler = new Handler() {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            mVolumn++;
-            mVolumView.setVolumn(mVolumn);
-            if(mVolumn==30){
-                mVolumn=0;
+            switch (msg.what) {
+                case 0:
+                    mVolumn++;
+                    mVolumView.setVolumn(mVolumn);
+                    if (mVolumn == 30) {
+                        mVolumn = 0;
+                    }
+                    mHandler.sendEmptyMessageDelayed(0, refreshTime);
+                    break;
+                case 1:
+                    progress++;
+                    horizontalProgressbar.setProgress(progress);
+                    if (progress > horizontalProgressbar.getMax()) {
+                        progress = 0;
+                    }
+                    mHandler.sendEmptyMessageDelayed(1, 50);
+                    break;
             }
-            mHandler.sendEmptyMessageDelayed(0,refreshTime);
         }
     };
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,19 +110,22 @@ public class AndroidDrawTest extends FragmentActivity implements View.OnClickLis
         //adapter data
         mPageAdapter = new MViewPagerAdapter(getSupportFragmentManager());
         mPager.setAdapter(mPageAdapter);
-        mPager.setCurrentItem(currentIndex,false);
+        mPager.setCurrentItem(currentIndex, false);
         selectIndicator(currentIndex);
 
         Tag.i(Tag.SELF_VIEW, "currentIndex:" + currentIndex);
 
         //设置监听
         mPager.setOnPageChangeListener(this);
+
+        horizontalProgressbar = (HorizontalProgressbar) findViewById(R.id.horizon_progressBar);
+        mHandler.sendEmptyMessageDelayed(1, 50);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        mHandler.sendEmptyMessageDelayed(0,refreshTime);
+        mHandler.sendEmptyMessageDelayed(0, refreshTime);
     }
 
     @Override
@@ -124,7 +144,7 @@ public class AndroidDrawTest extends FragmentActivity implements View.OnClickLis
                 currentIndex = 3;
                 break;
         }
-        mPager.setCurrentItem(currentIndex,false);
+        mPager.setCurrentItem(currentIndex, false);
         selectIndicator(currentIndex);
     }
 

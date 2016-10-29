@@ -1,103 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-    <!--基础图形的绘制-->
-    <com.basepractice.view.CustomCircleView
-        android:layout_width="100dp"
-        android:layout_height="100dp" />
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/xml_bitmap" />
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewPager_test"
-        android:layout_width="match_parent"
-        android:layout_height="100dp" />
+    android:layout_height="match_parent">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp">
-        <!--XferMode练习-->
-        <com.basepractice.view.SelfView
-            android:id="@+id/seletct_one"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="5dp"
-            app:color="@color/colorAccent"
-            app:icon="@drawable/woniu"
-            app:text="微信"
-            app:text_size="10sp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <!--基础图形的绘制-->
+        <com.basepractice.view.CustomCircleView
+            android:layout_width="100dp"
+            android:layout_height="100dp" />
 
-        <com.basepractice.view.SelfView
-            android:id="@+id/seletct_two"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="5dp"
-            app:color="@color/colorAccent"
-            app:icon="@drawable/woniu"
-            app:text="微信"
-            app:text_size="10sp" />
-
-        <com.basepractice.view.SelfView
-            android:id="@+id/seletct_three"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="5dp"
-            app:color="@color/colorAccent"
-            app:icon="@drawable/woniu"
-            app:text="微信"
-            app:text_size="10sp" />
-
-        <com.basepractice.view.SelfView
-            android:id="@+id/seletct_four"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="5dp"
-            app:color="@color/colorAccent"
-            app:icon="@drawable/woniu"
-            app:text="微信"
-            app:text_size="10sp" />
-    </LinearLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.basepractice.view.LeanTextView
-            android:id="@+id/learnTextView"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            app:text="你好"
-            app:text_size="12sp"
-            app:textColor="@color/white"
-            app:textRotateDegress="45"
-            app:color="@color/black"
-            app:cornerRadius="2dp"
-            app:location="leftBottom"
-            />
-
-        <com.basepractice.view.MikeVolumView
-            android:id="@+id/mikeVolumn"
-            android:layout_width="30dp"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true" />
-
-        <Button
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="testInvalide"
-            android:onClick="testInvalide"/>
-    </FrameLayout>
+            android:src="@drawable/xml_bitmap" />
 
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewPager_test"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
 
-</LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <!--XferMode练习-->
+            <com.basepractice.view.SelfView
+                android:id="@+id/seletct_one"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                app:color="@color/colorAccent"
+                app:icon="@drawable/woniu"
+                app:text="微信"
+                app:text_size="10sp" />
+
+            <com.basepractice.view.SelfView
+                android:id="@+id/seletct_two"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                app:color="@color/colorAccent"
+                app:icon="@drawable/woniu"
+                app:text="微信"
+                app:text_size="10sp" />
+
+            <com.basepractice.view.SelfView
+                android:id="@+id/seletct_three"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                app:color="@color/colorAccent"
+                app:icon="@drawable/woniu"
+                app:text="微信"
+                app:text_size="10sp" />
+
+            <com.basepractice.view.SelfView
+                android:id="@+id/seletct_four"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp"
+                app:color="@color/colorAccent"
+                app:icon="@drawable/woniu"
+                app:text="微信"
+                app:text_size="10sp" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.basepractice.view.LeanTextView
+                android:id="@+id/learnTextView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                app:color="@color/black"
+                app:cornerRadius="2dp"
+                app:location="leftBottom"
+                app:text="你好"
+                app:textColor="@color/white"
+                app:textRotateDegress="45"
+                app:text_size="12sp" />
+
+            <com.basepractice.view.MikeVolumView
+                android:id="@+id/mikeVolumn"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="testInvalide"
+                android:text="testInvalide" />
+        </FrameLayout>
+        <com.basepractice.view.HorizontalProgressbar
+            android:id="@+id/horizon_progressBar"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            app:progress_text_color="@color/blue"
+            android:progress="0"
+            app:progress_reach_height="2dp"
+            android:background="@color/black"
+            app:progress_unreach_color="@color/colorAccent"
+            app:progress_unreach_height="5dp"/>
+    </LinearLayout>
+</ScrollView>
