@@ -3,6 +3,8 @@ package com.basepractice;
 import android.app.Activity;
 import android.os.Bundle;
 
+import java.util.Locale;
+
 /**
  * Created by admin on 2016/10/26.
  */
