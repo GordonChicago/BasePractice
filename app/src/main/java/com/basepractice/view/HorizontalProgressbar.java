@@ -88,7 +88,7 @@ public class HorizontalProgressbar extends ProgressBar {
             strPercent = strPercent.substring(0,3) + "%";
         }
 
-        Tag.i(TAG,"---"+strPercent);
+//        Tag.i(TAG,"---"+strPercent);
 
         //测量文字范围
         Rect txtBound = new Rect();

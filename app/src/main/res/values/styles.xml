@@ -61,4 +61,13 @@
             <enum name="rightBottom" value="4"/>
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="RoundImageView">
+        <attr name="circle_radius" format="dimension"/>
+        <attr name="corner_radius" format="dimension"/>
+        <attr name="type">
+            <enum name="circle" value="1"/>
+            <enum name="round_corner" value="2"/>
+        </attr>
+    </declare-styleable>
 </resources>
