@@ -14,31 +14,42 @@ import android.view.View;
 public class PathViewCubic extends View {
     private Paint mPaint;
     private Path mPath;
-    public PathViewCubic(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        mPaint = new Paint();
-        mPaint.setAntiAlias(true);
-        mPaint.setDither(true);
-        mPaint.setStrokeWidth(8);
 
-        mPath = new Path();
+    public PathViewCubic(Context context) {
+        this(context,null);
     }
 
     public PathViewCubic(Context context, AttributeSet attrs) {
         this(context, attrs,0);
     }
 
-    public PathViewCubic(Context context) {
-        this(context,null);
-    }
+    public PathViewCubic(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
 
+        mPaint = new Paint();
+        mPaint.setAntiAlias(true);
+        mPaint.setDither(true);
+        mPaint.setStrokeWidth(8);
+        mPaint.setStyle(Paint.Style.STROKE);
+
+        mPath = new Path();
+    }
     @Override
     protected void onDraw(Canvas canvas) {
-        canvas.drawColor(Color.DKGRAY);
+        super.onDraw(canvas);
 
-        mPath.cubicTo(0,0,10,10,50,50);
-        mPaint.setColor(Color.BLUE);
+        canvas.drawColor(Color.GREEN);
 
+//        mPath.moveTo(100,100);
+//        mPath.lineTo(200,200);
+
+//        mPath.moveTo(100,50);
+//        mPath.quadTo(200,100,300,300);
+
+        mPath.moveTo(0,0);
+        mPath.cubicTo(100,400,200,0,400,400);
+
+        mPaint.setColor(Color.RED);
         canvas.drawPath(mPath,mPaint);
     }
 }
