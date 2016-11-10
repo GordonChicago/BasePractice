@@ -148,6 +148,13 @@
         <com.basepractice.view.PathViewCubic
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:layout_marginLeft="20dp"/>
+            android:layout_marginLeft="20dp" />
+
+        <com.basepractice.view.AutoScrollTextView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp" />
     </LinearLayout>
 </ScrollView>
