@@ -70,4 +70,12 @@
             <enum name="round_corner" value="2"/>
         </attr>
     </declare-styleable>
+    
+    <declare-styleable name="AutoScrollTextView">
+        <attr name="text_size"/>
+        <attr name="minTextSize" format="dimension"/>
+        <attr name="textColor"/>
+        <!--0.0到1.0-->
+        <attr name="minAlpha" format="float"/>
+    </declare-styleable>
 </resources>

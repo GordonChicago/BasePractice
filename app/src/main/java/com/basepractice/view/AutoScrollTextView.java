@@ -2,6 +2,7 @@ package com.basepractice.view;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -11,6 +12,7 @@ import android.os.Message;
 import android.util.AttributeSet;
 import android.view.View;
 
+import com.basepractice.R;
 import com.basepractice.util.Tag;
 import com.basepractice.util.ViewUtils;
 
@@ -33,13 +35,14 @@ public class AutoScrollTextView extends View {
 
     private float mMaxTextSize = 100;
     private float mMinTextSize = 50;
+    private int mMinAlpha = 100;
+    private int mColor = Color.RED;
 
     private int mMinWidth;
     private int mMinHeight;
 
     private float mMoveDistance;
 
-    private int mMinAlpha = 100;
 
     private Handler mHandler = new Handler() {
         @Override
@@ -76,6 +79,19 @@ public class AutoScrollTextView extends View {
         mUpDigitBounds = new Rect();
 
         mHandler.sendEmptyMessageDelayed(0, 3 * 1000);
+
+
+        TypedArray customAttr = mContext.obtainStyledAttributes(attrs, R.styleable.AutoScrollTextView);
+        mMaxTextSize = customAttr.getDimension(R.styleable.AutoScrollTextView_text_size, mMaxTextSize);
+        mMinTextSize = customAttr.getDimension(R.styleable.AutoScrollTextView_minTextSize, mMinTextSize);
+        mMinAlpha = (int) (255 * customAttr.getFloat(R.styleable.AutoScrollTextView_minAlpha, mMinAlpha));
+        if (mMinAlpha < 0) {
+            mMinAlpha = 0;
+        } else if (mMinAlpha > 1) {
+            mMinAlpha = 1;
+        }
+        mColor = customAttr.getColor(R.styleable.AutoScrollTextView_textColor, mColor);
+        customAttr.recycle();
     }
 
     @Override
@@ -105,7 +121,7 @@ public class AutoScrollTextView extends View {
         canvas.drawColor(Color.GREEN);
 
         String text = "0";
-        mDownPaint.setColor(Color.RED);
+        mDownPaint.setColor(mColor);
 
         if (!mAnimateMode) {
             //直接显示文本,不加动画
@@ -155,7 +171,8 @@ public class AutoScrollTextView extends View {
                 upAlpha = mMinAlpha;
             }
             mUpPaint.setAlpha(upAlpha);
-            canvas.drawText("0", 0, 1, upX,upY, mUpPaint);
+            mUpPaint.setColor(mColor);
+            canvas.drawText("0", 0, 1, upX, upY, mUpPaint);
         }
     }
 
