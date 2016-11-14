@@ -41,19 +41,23 @@ public class DrawTextView extends TextView {
     private int mTranslate;
 
     public DrawTextView(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public DrawTextView(Context context, AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public DrawTextView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);//asdf
 
         mContext = context;
+        BitmapFactory.Options mBitmapOptions = new BitmapFactory.Options();
+        mBitmapOptions.inJustDecodeBounds = false;
+        Bitmap mBP = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.black_cat, mBitmapOptions);
+        Log.i(Tag.VIEW_TEST, "mBp:" + (mBP == null)+",mBp.width:"+mBP.getWidth()+",mBp.height:"+mBP.getHeight());
         mBitmap = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.black_cat).copy(Bitmap.Config.ARGB_8888, true);
-        mBitmapWoNiu = BitmapFactory.decodeResource(mContext.getResources(),R.drawable.woniu).copy(Bitmap.Config.ARGB_8888, true);
+        mBitmapWoNiu = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.woniu).copy(Bitmap.Config.ARGB_8888, true);
         mCanvas = new Canvas(mBitmap);
 
         //初始化画笔
@@ -63,32 +67,34 @@ public class DrawTextView extends TextView {
         mPaint2 = new Paint();
         mPaint2.setColor(Color.YELLOW);
         mPaint2.setStyle(Paint.Style.FILL);
-        Log.i(Tag.VIEW_TEST,"11111111");
+        Log.i(Tag.VIEW_TEST, "11111111");
+
+        Log.i(Tag.VIEW_TEST, "bitmapWidth:" + mBitmap.getWidth() + ",bitmapHeight:" + mBitmap.getHeight() + ",opsWidth:" + mBitmapOptions.outWidth + ",opsHeight:" + mBitmapOptions.outHeight);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         drawBlueYellowColor(canvas);
-        Log.i(Tag.VIEW_TEST,"onDraw");
+        Log.i(Tag.VIEW_TEST, "onDraw");
     }
 
-    private void drawBlueYellowColor(Canvas canvas){
-        canvas.drawRect(0,0,getMeasuredWidth(),getMeasuredHeight(),mPaint1);
-        canvas.drawRect(10,10,getMeasuredWidth()-10,getMeasuredHeight()-10,mPaint2);
+    private void drawBlueYellowColor(Canvas canvas) {
+        canvas.drawRect(0, 0, getMeasuredWidth(), getMeasuredHeight(), mPaint1);
+        canvas.drawRect(10, 10, getMeasuredWidth() - 10, getMeasuredHeight() - 10, mPaint2);
         canvas.save();
-        canvas.translate(10,10);
+        canvas.translate(10, 10);
         super.onDraw(canvas);
         canvas.restore();
     }
 
-    private void drawGradientColor(Canvas canvas){
+    private void drawGradientColor(Canvas canvas) {
         super.onDraw(canvas);
-        if(mMatrix!=null){
-            mTranslate += mWidth/5;
-            if(mTranslate>2*mWidth){
-                mTranslate=-mWidth;
+        if (mMatrix != null) {
+            mTranslate += mWidth / 5;
+            if (mTranslate > 2 * mWidth) {
+                mTranslate = -mWidth;
             }
-            mMatrix.setTranslate(mTranslate,0);
+            mMatrix.setTranslate(mTranslate, 0);
             mLinearGradient.setLocalMatrix(mMatrix);
             postInvalidateDelayed(100);
         }
@@ -96,9 +102,9 @@ public class DrawTextView extends TextView {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        Log.i(Tag.VIEW_TEST,"onMeasure");
-        setMeasuredDimension(ViewUtils.measureSize(getContext(),widthMeasureSpec,DEFAULT_WIDTH),
-                ViewUtils.measureSize(getContext(),heightMeasureSpec,DEFAULT_HEIGHT));
+        Log.i(Tag.VIEW_TEST, "onMeasure");
+        setMeasuredDimension(ViewUtils.measureSize(getContext(), widthMeasureSpec, DEFAULT_WIDTH),
+                ViewUtils.measureSize(getContext(), heightMeasureSpec, DEFAULT_HEIGHT));
     }
 
     @Override
@@ -121,18 +127,18 @@ public class DrawTextView extends TextView {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        Log.i(Tag.VIEW_TEST,"onFinishInflate");
+        Log.i(Tag.VIEW_TEST, "onFinishInflate");
     }
 
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
-        Log.i(Tag.VIEW_TEST,"onLayout");
+        Log.i(Tag.VIEW_TEST, "onLayout");
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.i(Tag.VIEW_TEST,"onTouchEvent");
+        Log.i(Tag.VIEW_TEST, "onTouchEvent");
         return super.onTouchEvent(event);
     }
 }
