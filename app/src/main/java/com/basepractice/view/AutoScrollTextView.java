@@ -100,8 +100,7 @@ public class AutoScrollTextView extends View {
         int mearWidthSize = ViewUtils.measureSize(mContext, widthMeasureSpec, mMinWidth);
         int mearHeightSize = ViewUtils.measureSize(mContext, heightMeasureSpec, mMinHeight);
         setMeasuredDimension(mearWidthSize, mearHeightSize);
-
-
+        
         int textHeight = getMeasuredHeight();
         mDownPaint.setTextSize(mMinTextSize);
         mDownPaint.getTextBounds("0", 0, 1, mDownDigitBounds);
