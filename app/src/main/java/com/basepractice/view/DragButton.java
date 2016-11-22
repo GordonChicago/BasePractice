@@ -9,11 +9,11 @@ import android.widget.Scroller;
 
 /**
  * 实现滑动的方法：
- *  1.计算偏移量,使用layout进行重新布局
- *      layout(getLeft()+distanceX,getTop()+distanceY,getRight()+distanceX,getBottom()+distanceY);
- *  2.计算偏移量,使用offsetLeftAndRight和offsetTopAndBottom进行上下偏移
- *      offsetLeftAndRight(distanceX);
- *      offsetLeftAndRight(distanceY);
+ * 1.计算偏移量,使用layout进行重新布局
+ * layout(getLeft()+distanceX,getTop()+distanceY,getRight()+distanceX,getBottom()+distanceY);
+ * 2.计算偏移量,使用offsetLeftAndRight和offsetTopAndBottom进行上下偏移
+ * offsetLeftAndRight(distanceX);
+ * offsetLeftAndRight(distanceY);
  */
 public class DragButton extends Button {
     private float mLastX;
@@ -23,12 +23,13 @@ public class DragButton extends Button {
     private float mMoveY;
 
     private Scroller mScroller;
+
     public DragButton(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public DragButton(Context context, AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public DragButton(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -39,7 +40,7 @@ public class DragButton extends Button {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        switch (event.getAction()){
+        switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 mLastX = event.getX();
                 mLastY = event.getY();
@@ -47,12 +48,12 @@ public class DragButton extends Button {
             case MotionEvent.ACTION_MOVE:
                 mMoveX = event.getX();
                 mMoveY = event.getY();
-                int distanceX = (int)(mMoveX - mLastX);
-                int distanceY = (int)(mMoveY - mLastY);
+                int distanceX = (int) (mMoveX - mLastX);
+                int distanceY = (int) (mMoveY - mLastY);
 
 
                 //第一种实现滑动的方法
-                layout(getLeft()+distanceX,getTop()+distanceY,getRight()+distanceX,getBottom()+distanceY);
+                layout(getLeft() + distanceX, getTop() + distanceY, getRight() + distanceX, getBottom() + distanceY);
 
                 //第二种实现滑动的方法
 //                offsetLeftAndRight(distanceX);
@@ -89,10 +90,11 @@ public class DragButton extends Button {
     @Override
     public void computeScroll() {
         super.computeScroll();
-        if(mScroller.computeScrollOffset()){
-            ViewGroup parent = (ViewGroup)getParent();
-            parent.scrollTo(mScroller.getCurrX(),mScroller.getCurrY());
+        if (mScroller.computeScrollOffset()) {
+            ViewGroup parent = (ViewGroup) getParent();
+            parent.scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
             invalidate();
         }
+
     }
 }
