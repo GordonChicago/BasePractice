@@ -38,8 +38,11 @@
         <activity android:name=".ViewFocusTest" />
         <activity android:name=".HandlerDemo" />
         <activity android:name=".ViewSpeakAnimation" />
-        <activity android:name=".MessengerTest"/>
-        <activity android:name=".AndroidViewTest"/>
+        <activity android:name=".MessengerTest" />
+        <activity android:name=".AndroidViewTest" />
+        <activity
+            android:name=".KeyboardActivity"
+            android:windowSoftInputMode="adjustPan" />
 
         <service
             android:name=".MessengerService"
