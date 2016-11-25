@@ -1,10 +1,12 @@
 package com.basepractice.view;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
@@ -43,8 +45,11 @@ public class CircleProgressBar extends View {
 
     private RectF mCircleArea;
     private RectF mOvalArea;
+    private Rect mTextRect;
 
     private Paint mPaint;
+
+    private float mPercent;
 
     public CircleProgressBar(Context context) {
         this(context, null);
@@ -77,6 +82,8 @@ public class CircleProgressBar extends View {
         mPaint = new Paint();
         mPaint.setAntiAlias(true);
         mPaint.setDither(true);
+
+        mTextRect = new Rect();
     }
 
     @Override
@@ -125,11 +132,44 @@ public class CircleProgressBar extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
 
-        //先画圈
+        //画圈
+        float sweepAngle = 360 * (1 - mPercent);
         mPaint.setStrokeWidth(mCircleWidth);
         mPaint.setColor(mCircleColor);
         mPaint.setStyle(Paint.Style.STROKE);
-        canvas.drawArc(mCircleArea, 180, 90, false, mPaint);
+        canvas.drawArc(mCircleArea, 180, sweepAngle, false, mPaint);
 
+        //画中间圆
+        mPaint.setStyle(Paint.Style.FILL);
+        mPaint.setColor(mOvalColor);
+        canvas.drawOval(mOvalArea, mPaint);
+
+        //画文字
+        if (mText != null) {
+            //测量文字
+            mPaint.setTextSize(mTextSize);
+            mPaint.setColor(mTextColor);
+            mPaint.getTextBounds(mText, 0, mText.length(), mTextRect);
+            float textX = getMeasuredWidth()/2 - mTextRect.width()/2;
+            float textY = getMeasuredHeight()/2 + mTextRect.height()/2;
+            canvas.drawText(mText,textX,textY,mPaint);
+        }
+    }
+
+    public void animate(int duration){
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 100f);
+        valueAnimator.setDuration(duration);
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                Float anValue = (Float) animation.getAnimatedValue();
+                if (anValue != null) {
+                    float nowValue = anValue.floatValue();
+                    mPercent = nowValue / 100f;
+                    invalidate();
+                }
+            }
+        });
+        valueAnimator.start();
     }
 }

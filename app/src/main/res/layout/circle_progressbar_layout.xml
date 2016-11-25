@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <com.basepractice.view.CircleProgressBar
+        android:id="@+id/circle_progressBar"
         android:layout_width="100dp"
         android:layout_height="100dp"
         app:circle_color="@color/blue"
@@ -13,6 +14,7 @@
         app:oval_color="@color/colorPrimary"
         app:text="跳过"
         app:textColor="@color/orange"
-        app:text_size="10sp" />
+        app:text_size="10sp"
+        app:oval_radius="50dp"/>
 
 </LinearLayout>
