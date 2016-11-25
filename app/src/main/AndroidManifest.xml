@@ -43,6 +43,7 @@
         <activity
             android:name=".KeyboardActivity"
             android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".CircleProgressBarActivity"/>
 
         <service
             android:name=".MessengerService"

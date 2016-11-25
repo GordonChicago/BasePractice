@@ -10,6 +10,9 @@
         android:layout_height="100dp"
         app:circle_color="@color/blue"
         app:circle_width="2dp"
-        app:oval_color="@color/colorPrimary"/>
+        app:oval_color="@color/colorPrimary"
+        app:text="跳过"
+        app:textColor="@color/orange"
+        app:text_size="10sp" />
 
 </LinearLayout>

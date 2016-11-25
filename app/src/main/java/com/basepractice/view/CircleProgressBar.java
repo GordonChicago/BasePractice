@@ -90,34 +90,34 @@ public class CircleProgressBar extends View {
         float actHeight = heightSize;
 
         if (widthMode == MeasureSpec.AT_MOST) {
-            actWidth = Math.min(mMinWidth,widthSize);
+            actWidth = Math.min(mMinWidth, widthSize);
         }
 
         if (heightMode == MeasureSpec.AT_MOST) {
-            actHeight = Math.min(mMinWidth,heightSize);
+            actHeight = Math.min(mMinWidth, heightSize);
         }
 
-        if(actWidth < mMinWidth){
+        if (actWidth < mMinWidth) {
             actWidth = mMinWidth;
         }
 
-        if(actHeight < mMinWidth){
+        if (actHeight < mMinWidth) {
             actHeight = mMinWidth;
         }
 
-        setMeasuredDimension((int)actWidth,(int)actHeight);
+        setMeasuredDimension((int) actWidth, (int) actHeight);
 
-        float mCircleLeft = getMeasuredWidth()/2 - (mOvalRadius+mCircleWidth);
-        float mCircleTop = getMeasuredHeight()/2 - (mOvalRadius+mCircleWidth);
-        float mCircleRight = getMeasuredWidth()/2 + (mOvalRadius+mCircleWidth);
-        float mCircleBottom = getMeasuredHeight()/2 + (mOvalRadius+mCircleWidth);
-        mCircleArea = new RectF(mCircleLeft,mCircleTop,mCircleRight,mCircleBottom);
+        float mCircleLeft = getMeasuredWidth() / 2 - (mOvalRadius + mCircleWidth);
+        float mCircleTop = getMeasuredHeight() / 2 - (mOvalRadius + mCircleWidth);
+        float mCircleRight = getMeasuredWidth() / 2 + (mOvalRadius + mCircleWidth);
+        float mCircleBottom = getMeasuredHeight() / 2 + (mOvalRadius + mCircleWidth);
+        mCircleArea = new RectF(mCircleLeft, mCircleTop, mCircleRight, mCircleBottom);
 
-        float mOvalLeft = getMeasuredWidth()/2 - (mOvalRadius);
-        float mOvalTop = getMeasuredHeight()/2 - (mOvalRadius);
-        float mOvalRight = getMeasuredWidth()/2 + (mOvalRadius);
-        float mOvalBottom = getMeasuredHeight()/2 + (mOvalRadius);
-        mOvalArea = new RectF(mOvalLeft,mOvalTop,mOvalRight,mOvalBottom);
+        float mOvalLeft = getMeasuredWidth() / 2 - (mOvalRadius);
+        float mOvalTop = getMeasuredHeight() / 2 - (mOvalRadius);
+        float mOvalRight = getMeasuredWidth() / 2 + (mOvalRadius);
+        float mOvalBottom = getMeasuredHeight() / 2 + (mOvalRadius);
+        mOvalArea = new RectF(mOvalLeft, mOvalTop, mOvalRight, mOvalBottom);
 
     }
 
@@ -128,7 +128,8 @@ public class CircleProgressBar extends View {
         //先画圈
         mPaint.setStrokeWidth(mCircleWidth);
         mPaint.setColor(mCircleColor);
-        canvas.drawArc(mCircleArea,180,90,true,mPaint);
+        mPaint.setStyle(Paint.Style.STROKE);
+        canvas.drawArc(mCircleArea, 180, 90, false, mPaint);
 
     }
 }

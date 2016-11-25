@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     Class[] activitys = new Class[]{ViewPropertyTest.class, MeasuedViewActivity.class, MScrollViewActivity.class
             , EventDispatchActivity.class, ListViewActivity.class, ViewXYActivity.class, MScrollViewImpl.class, ValueAnimator.class
             , VolleyTestActivity.class, AndroidDrawTest.class, ViewFocusTest.class, HandlerDemo.class, ViewSpeakAnimation.class, MessengerTest.class
-    ,AndroidViewTest.class,KeyboardActivity.class,KeyboardActivity.class,KeyboardActivity.class,KeyboardActivity.class};
+    ,AndroidViewTest.class,KeyboardActivity.class,CircleProgressBarActivity.class};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
