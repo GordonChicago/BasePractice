@@ -24,6 +24,10 @@ public class CircleProgressBar extends View {
     public static int DEFAULT_CIRCLE_WIDTH = 2;
     public static int DEFAULT_CIRCLE_COLOR = Color.WHITE;
     public static String DEFAULT_TEXT = "跳过";
+    public static int MODE_ClockWise = 0;        //顺时针前进动画
+    public static int MODE_ClockWise_BACK = 1;        //顺时针回退动画
+    public static int MODE_CounterClockWise = 2;        //逆时针前进动画
+    public static int MODE_CounterClockWise_BACK = 3;        //逆时针回退动画
 
     //文本定义
     private float mTextSize = DEFAULT_TEXT_SIZE;
@@ -50,6 +54,12 @@ public class CircleProgressBar extends View {
     private Paint mPaint;
 
     private float mPercent;
+
+    private int mMode = MODE_CounterClockWise;
+
+    private int mStartAngle = 0;
+
+    private CircleProgressListener mProgressListener;
 
     public CircleProgressBar(Context context) {
         this(context, null);
@@ -114,10 +124,10 @@ public class CircleProgressBar extends View {
 
         setMeasuredDimension((int) actWidth, (int) actHeight);
 
-        float mCircleLeft = getMeasuredWidth() / 2 - (mOvalRadius + mCircleWidth);
-        float mCircleTop = getMeasuredHeight() / 2 - (mOvalRadius + mCircleWidth);
-        float mCircleRight = getMeasuredWidth() / 2 + (mOvalRadius + mCircleWidth);
-        float mCircleBottom = getMeasuredHeight() / 2 + (mOvalRadius + mCircleWidth);
+        float mCircleLeft = getMeasuredWidth() / 2 - (mOvalRadius + mCircleWidth / 2);
+        float mCircleTop = getMeasuredHeight() / 2 - (mOvalRadius + mCircleWidth / 2);
+        float mCircleRight = getMeasuredWidth() / 2 + (mOvalRadius + mCircleWidth / 2);
+        float mCircleBottom = getMeasuredHeight() / 2 + (mOvalRadius + mCircleWidth / 2);
         mCircleArea = new RectF(mCircleLeft, mCircleTop, mCircleRight, mCircleBottom);
 
         float mOvalLeft = getMeasuredWidth() / 2 - (mOvalRadius);
@@ -133,11 +143,21 @@ public class CircleProgressBar extends View {
         super.onDraw(canvas);
 
         //画圈
-        float sweepAngle = 360 * (1 - mPercent);
+        float sweepAngle = 0;
+        if (mMode == MODE_ClockWise) {
+            sweepAngle = 360 * mPercent;
+        } else if (mMode == MODE_ClockWise_BACK) {
+            sweepAngle = 360 * (1 - mPercent);
+        } else if (mMode == MODE_CounterClockWise) {
+            sweepAngle = 360 * -mPercent;
+        } else if (mMode == MODE_CounterClockWise_BACK) {
+            sweepAngle = 360 * (mPercent - 1);
+        }
+
         mPaint.setStrokeWidth(mCircleWidth);
         mPaint.setColor(mCircleColor);
         mPaint.setStyle(Paint.Style.STROKE);
-        canvas.drawArc(mCircleArea, 180, sweepAngle, false, mPaint);
+        canvas.drawArc(mCircleArea, mStartAngle, sweepAngle, false, mPaint);
 
         //画中间圆
         mPaint.setStyle(Paint.Style.FILL);
@@ -150,13 +170,13 @@ public class CircleProgressBar extends View {
             mPaint.setTextSize(mTextSize);
             mPaint.setColor(mTextColor);
             mPaint.getTextBounds(mText, 0, mText.length(), mTextRect);
-            float textX = getMeasuredWidth()/2 - mTextRect.width()/2;
-            float textY = getMeasuredHeight()/2 + mTextRect.height()/2;
-            canvas.drawText(mText,textX,textY,mPaint);
+            float textX = getMeasuredWidth() / 2 - mTextRect.width() / 2;
+            float textY = getMeasuredHeight() / 2 + mTextRect.height() / 2;
+            canvas.drawText(mText, textX, textY, mPaint);
         }
     }
 
-    public void animate(int duration){
+    public void animate(int duration) {
         ValueAnimator valueAnimator = ValueAnimator.ofFloat(0f, 100f);
         valueAnimator.setDuration(duration);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -167,9 +187,32 @@ public class CircleProgressBar extends View {
                     float nowValue = anValue.floatValue();
                     mPercent = nowValue / 100f;
                     invalidate();
+
+                    if (mProgressListener != null) {
+                        mProgressListener.onPercent(mPercent);
+                    }
                 }
             }
         });
         valueAnimator.start();
+    }
+
+    public interface CircleProgressListener {
+        public void onPercent(float percent);
+    }
+
+    public void setProgressListener(CircleProgressListener progressListener) {
+        this.mProgressListener = progressListener;
+    }
+
+    public void setStartAngle(int startAngle) {
+        this.mStartAngle = startAngle;
+    }
+
+    public void setMode(int mode) {
+        if(mode != MODE_ClockWise && mode!= MODE_ClockWise_BACK && mode != MODE_CounterClockWise && mode != MODE_CounterClockWise_BACK){
+            return;
+        }
+        this.mMode = mode;
     }
 }
