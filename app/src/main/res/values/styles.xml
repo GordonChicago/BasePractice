@@ -70,4 +70,11 @@
             <enum name="round_corner" value="2"/>
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="CircleProgressView">
+        <attr name="reach_circle_width" format="dimension"/>
+        <attr name="unreach_circle_width" format="dimension"/>
+        <attr name="reach_color" format="color"/>
+        <attr name="unreach_color" format="color"/>
+    </declare-styleable>
 </resources>

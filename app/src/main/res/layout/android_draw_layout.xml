@@ -126,6 +126,16 @@
                 app:corner_radius="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"/>
+            <com.basepractice.view.CircleProgressView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginLeft="20dp"
+                app:reach_circle_width="2dp"
+                app:unreach_circle_width="5dp"
+                app:reach_color="@color/colorAccent"
+                app:unreach_color="@color/blue"
+                android:progress="90"
+                android:background="@color/black"/>
         </LinearLayout>
     </LinearLayout>
 </ScrollView>
