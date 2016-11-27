@@ -77,4 +77,22 @@
         <attr name="reach_color" format="color"/>
         <attr name="unreach_color" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="AutoScrollTextView">
+        <attr name="text_size"/>
+        <attr name="minTextSize" format="dimension"/>
+        <attr name="textColor"/>
+        <!--0.0到1.0-->
+        <attr name="minAlpha" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="CircleProgressBar">
+        <attr name="text"/>
+        <attr name="text_size"/>
+        <attr name="textColor"/>
+        <attr name="oval_radius" format="dimension"/>
+        <attr name="oval_color" format="color"/>
+        <attr name="circle_width" format="dimension"/>
+        <attr name="circle_color" format="color"/>
+    </declare-styleable>
 </resources>

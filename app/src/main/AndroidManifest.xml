@@ -41,6 +41,11 @@
         <activity android:name=".MessengerTest"/>
         <activity android:name=".AndroidViewTest"/>
         <activity android:name=".FrameLayoutTest"/>
+        <activity android:name=".MessengerTest" />
+        <activity
+            android:name=".KeyboardActivity"
+            android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".CircleProgressBarActivity"/>
 
         <service
             android:name=".MessengerService"
