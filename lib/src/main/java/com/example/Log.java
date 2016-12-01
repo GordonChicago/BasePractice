@@ -5,6 +5,6 @@ package com.example;
  */
 public class Log {
     public static void i(String tag,String msg){
-        System.out.println(tag+"-----"+msg);
+        System.out.println(tag+"----->"+msg);
     }
 }
