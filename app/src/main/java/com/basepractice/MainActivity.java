@@ -13,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.basepractice.dialog.ShootingModeChatActivity;
 import com.basepractice.rxjava.RxJavaMain;
 
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     Class[] activitys = new Class[]{ViewPropertyTest.class, MeasuedViewActivity.class, MScrollViewActivity.class
             , EventDispatchActivity.class, ListViewActivity.class, ViewXYActivity.class, MScrollViewImpl.class, ValueAnimator.class
             , VolleyTestActivity.class, AndroidDrawTest.class, ViewFocusTest.class, HandlerDemo.class, ViewSpeakAnimation.class, MessengerTest.class
-    ,AndroidViewTest.class,KeyboardActivity.class,CircleProgressBarActivity.class,RxJavaMain.class};
+    ,AndroidViewTest.class,KeyboardActivity.class,CircleProgressBarActivity.class,RxJavaMain.class,ShootingModeChatActivity.class};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

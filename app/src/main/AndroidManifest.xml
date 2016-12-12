@@ -46,6 +46,7 @@
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".CircleProgressBarActivity"/>
         <activity android:name=".rxjava.RxJavaMain"/>
+        <activity android:name=".dialog.ShootingModeChatActivity"/>
 
 
         <service

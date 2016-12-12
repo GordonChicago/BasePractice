@@ -28,7 +28,7 @@
         android:onClick="tanslationAnimation"
         android:layout_alignParentBottom="true"/>
     <Button
-        android:id="@+id/btn_scacle"
+        android:id="@+id/btn_rotate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="旋转"
@@ -37,10 +37,19 @@
         android:layout_toRightOf="@id/btn_trans"/>
 
     <Button
+        android:id="@+id/btn_scale"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="缩放"
         android:onClick="scacleAnimation"
         android:layout_alignParentBottom="true"
-        android:layout_toRightOf="@id/btn_scacle"/>
+        android:layout_toRightOf="@id/btn_rotate"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="动画"
+        android:onClick="dialogAnimation"
+        android:layout_alignParentBottom="true"
+        android:layout_toRightOf="@id/btn_scale"/>
 </RelativeLayout>
