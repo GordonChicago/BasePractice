@@ -23,16 +23,19 @@ import com.basepractice.util.Tag;
 import com.basepractice.view.HorizontalProgressbar;
 import com.basepractice.view.LeanTextView;
 import com.basepractice.view.MikeVolumView;
+import com.basepractice.view.RandomTextView;
 import com.basepractice.view.SelfView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by admin on 2016/10/17.
  */
 
 public class AndroidDrawTest extends FragmentActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {
+    private static final String TAG = AndroidDrawTest.class.getSimpleName();
     private SelfView[] selfViews = new SelfView[4];
     private ViewPager mPager;
     private MViewPagerAdapter mPageAdapter;
@@ -48,6 +51,8 @@ public class AndroidDrawTest extends FragmentActivity implements View.OnClickLis
 
     private HorizontalProgressbar horizontalProgressbar;
     private int progress;
+
+    private RandomTextView mRandomView;
 
     private Handler mHandler = new Handler() {
         @Override
@@ -69,6 +74,21 @@ public class AndroidDrawTest extends FragmentActivity implements View.OnClickLis
                         progress = 0;
                     }
                     mHandler.sendEmptyMessageDelayed(1, 50);
+                    break;
+                case 2:
+                    Random random = new Random();
+                    String newDigital = random.nextInt(10)+""+random.nextInt(10)+""+random.nextInt(10)+""+random.nextInt(10);
+                    Tag.i(TAG,"newDigital:"+newDigital);
+                    mRandomView.setText(newDigital);
+                    mRandomView.setPianyilian(RandomTextView.FIRSTF_FIRST);
+                    int[] speed =  new int[4];
+                    speed[0] = 25;
+                    speed[1] = 26;
+                    speed[2] = 27;
+                    speed[3] = 28;
+                    mRandomView.setPianyilian(speed);
+                    mRandomView.start();
+//                    mHandler.sendEmptyMessageDelayed(2,2000);
                     break;
             }
         }
@@ -120,8 +140,20 @@ public class AndroidDrawTest extends FragmentActivity implements View.OnClickLis
         //设置监听
         mPager.setOnPageChangeListener(this);
 
+        mRandomView = (RandomTextView) findViewById(R.id.randomTextView);
+        mHandler.sendEmptyMessageDelayed(2,2000);
+
         horizontalProgressbar = (HorizontalProgressbar) findViewById(R.id.horizon_progressBar);
         mHandler.sendEmptyMessageDelayed(1, 50);
+
+        findViewById(R.id.btn_animStart).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mHandler.sendEmptyMessage(2);
+            }
+        });
+
+
     }
 
     @Override

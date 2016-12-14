@@ -182,5 +182,21 @@
             app:minTextSize="10sp"
             app:textColor="@color/colorAccent"
             app:text_size="50sp" />
+
+        <com.basepractice.view.RandomTextView
+            android:id="@+id/randomTextView"
+            android:layout_width="100dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="1234"
+            android:textSize="28sp"/>
+        <Button
+            android:id="@+id/btn_animStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:text="动弹"/>
     </LinearLayout>
 </ScrollView>
