@@ -1,10 +1,14 @@
 package com.example;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.spi.CalendarDataProvider;
 
 public class MyClass {
     public static void main(String[] args) {
-        testEquals();
+//        testEquals();
+        System.out.println(Calendar.getInstance().get(Calendar.YEAR));
     }
 
     public static void testEquals(){
