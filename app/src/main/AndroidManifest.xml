@@ -38,22 +38,23 @@
         <activity android:name=".ViewFocusTest" />
         <activity android:name=".HandlerDemo" />
         <activity android:name=".ViewSpeakAnimation" />
-        <activity android:name=".MessengerTest"/>
-        <activity android:name=".AndroidViewTest"/>
-        <activity android:name=".FrameLayoutTest"/>
+        <activity android:name=".MessengerTest" />
+        <activity android:name=".AndroidViewTest" />
+        <activity android:name=".FrameLayoutTest" />
         <activity
             android:name=".KeyboardActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".CircleProgressBarActivity"/>
-        <activity android:name=".rxjava.RxJavaMain"/>
-        <activity android:name=".dialog.ShootingModeChatActivity"/>
-
+        <activity android:name=".CircleProgressBarActivity" />
+        <activity android:name=".rxjava.RxJavaMain" />
+        <activity android:name=".event_location_info"/>
 
         <service
             android:name=".MessengerService"
             android:enabled="true"
             android:exported="true"
-            android:process=":backend"></service>
+            android:process=":backend" />
+
+        <activity android:name=".event_location_info"></activity>
     </application>
 
 </manifest>

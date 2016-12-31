@@ -11,7 +11,7 @@ import com.basepractice.util.Tag;
  */
 
 public class MViewGroupA extends LinearLayout{
-    private final String TAG = MViewGroupA.class.getSimpleName();
+    private final String TAG = Tag.EVENT_TAG+"A--";
     public MViewGroupA(Context context) {
         super(context);
     }

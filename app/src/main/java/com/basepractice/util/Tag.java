@@ -9,6 +9,7 @@ public final  class Tag {
     public final static String VIEW_TEST = "ViewTest";
     public final static String LIST_VIEW = "LIST_VIEW";
     public final static String SELF_VIEW = "SelfView";
+    public final static String EVENT_TAG = "Event_Tag";
     public final static boolean LOG_OFF = true;
     public static void i(String tag,String msg){
         Log.i(tag,msg);

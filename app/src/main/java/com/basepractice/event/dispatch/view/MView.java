@@ -14,7 +14,7 @@ import com.basepractice.util.Tag;
  */
 
 public class MView extends View {
-    private final String TAG = MView.class.getSimpleName();
+    private final String TAG = Tag.EVENT_TAG+"View--";
     public MView(Context context) {
         super(context);
     }
@@ -36,9 +36,10 @@ public class MView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Tag.i(TAG,"onTouchEvent ");
-        if(MotionEventUtil.isACTION_DOWN(event)){
-            return true;
-        }
+//        if(MotionEventUtil.isACTION_DOWN(event)){
+//            Tag.i(TAG,"aaaaaaaaaaaaaaaaaa------------");
+//            return true;
+//        }
         return super.onTouchEvent(event);
     }
 }
